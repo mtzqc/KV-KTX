@@ -29,7 +29,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'com.github.mtzqc:KV-KTX:xxxx'
+    implementation 'com.github.mtzqc:kv-ktx:1.0.0'
     //如果使用mmkv,不使用可以不引入
     implementation 'com.tencent:tencent:xxxx'
 }
