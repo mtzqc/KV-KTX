@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.mtzqc.kv.MainActivity">
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          >
+
+          <Button
+              android:id="@+id/loginBtn"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="login"
+              />
+          <Button
+              android:id="@+id/user"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="user"
+              />
+          <Button
+              android:id="@+id/aName"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="aName"
+              />
+          <Button
+              android:id="@+id/aAge"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="aAge"
+              />
+          <Button
+              android:id="@+id/aGender"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="aGender"
+              />
+
+          <Button
+              android:id="@+id/aTime"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="aTime"
+              />
+
+
+          <Button
+              android:id="@+id/bName"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="bName"
+              />
+          <Button
+              android:id="@+id/bAge"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="bAge"
+              />
+          <Button
+              android:id="@+id/bGender"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="bGender"
+              />
+
+          <Button
+              android:id="@+id/bTime"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="bTime"
+              />
+          <TextView
+              android:id="@+id/valueTx"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+      </LinearLayout>
+  </ScrollView>
+
+</LinearLayout>
