@@ -39,5 +39,5 @@ interface IStore {
 
     fun  getByteArray(key: String,  defaultValue:ByteArray? = null): ByteArray?
 
-    fun putByteArray(key: String, p: ByteArray)
+    fun putByteArray(key: String, array: ByteArray)
 }
