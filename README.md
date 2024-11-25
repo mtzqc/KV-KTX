@@ -1,6 +1,7 @@
 # KV-KTX
 
-站在大佬的肩膀上，参考了大佬的 [MMKV-KTX](https://github.com/DylanCaiCoding/MMKV-KTX) 感谢大佬
+站在大佬的肩膀上，参考了大佬的 [MMKV-KTX](https://github.com/DylanCaiCoding/MMKV-KTX) 感谢大佬  
+[![](https://jitpack.io/v/mtzqc/kv-ktx.svg)](https://jitpack.io/#mtzqc/kv-ktx)
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](https://github.com/DylanCaiCoding/MMKV-KTX/blob/master/LICENSE)
 
 1、结合了 Kotlin 属性委托的特性，使用field属性名作为缓存key，无需声明大量的键名常量  
