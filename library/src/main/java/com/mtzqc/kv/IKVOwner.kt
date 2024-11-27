@@ -25,72 +25,76 @@ interface IKVOwner {
 
 fun <T> IKVOwner.removeProperty(proper: KProperty<T>) = removeKey(proper.name)
 
-fun IKVOwner.kvInt(default: Int = 0) = KVProperty({
+fun IKVOwner.kvInt(default: Int = 0, cache: Boolean? = null) = KVProperty(cache, {
     store.getInt(it, default)
 }, {
     store.putInt(first, second)
 })
 
-fun IKVOwner.kvLong(default: Long = 0L) = KVProperty({
+fun IKVOwner.kvLong(default: Long = 0L, cache: Boolean? = null) = KVProperty(cache, {
     store.getLong(it, default)
 }, {
     store.putLong(first, second)
 })
 
-fun IKVOwner.kvFloat(default: Float = 0F) = KVProperty({
+fun IKVOwner.kvFloat(default: Float = 0F, cache: Boolean? = null) = KVProperty(cache, {
     store.getFloat(it, default)
 }, {
     store.putFloat(first, second)
 })
 
-fun IKVOwner.kvDouble(default: Double = 0.0) = KVProperty({
+fun IKVOwner.kvDouble(default: Double = 0.0, cache: Boolean? = null) = KVProperty(cache, {
     store.getDouble(it, default)
 }, {
     store.putDouble(first, second)
 })
 
-fun IKVOwner.kvBool(default: Boolean = false) = KVProperty({
+fun IKVOwner.kvBool(default: Boolean = false, cache: Boolean? = null) = KVProperty(cache, {
     store.getBool(it, default)
 }, {
     store.putBool(first, second)
 })
 
-fun IKVOwner.kvStr(default: String? = null) = KVProperty({
+fun IKVOwner.kvStr(default: String? = null, cache: Boolean? = null) = KVProperty(cache, {
     store.getStr(it, default)
 }, {
     store.putStr(first, second!!)
 })
 
-fun IKVOwner.kvSet(default: Set<String>? = null) = KVProperty({
+fun IKVOwner.kvSet(default: Set<String>? = null, cache: Boolean? = null) = KVProperty(cache, {
     store.getSetStr(it, default)
 }, {
     store.putSetStr(first, second!!)
 })
 
-fun IKVOwner.kvBytes(default: ByteArray? = null) = KVProperty({
+fun IKVOwner.kvBytes(default: ByteArray? = null, cache: Boolean? = null) = KVProperty(cache, {
     store.getByteArray(it, default)
 }, {
     store.putByteArray(first, second!!)
 })
 
 
-inline fun <reified P : Parcelable> IKVOwner.kvParcelable(default: P? = null) = KVProperty({
+inline fun <reified P : Parcelable> IKVOwner.kvParcelable(
+    default: P? = null,
+    cache: Boolean? = null
+) = KVProperty(cache, {
     store.getParcelable(it, P::class.java, default)
 }, {
     store.putParcelable(first, second!!)
 })
 
-inline fun <reified V> IKVOwner.kvCoder(default: V? = null) = KVProperty({
-    val decoder = KvPlugins.findDecoder(it, V::class.java)
-        ?: throw UnsupportedOperationException("un support decoder key: $it clazz : ${V::class.java.name}")
-    val array = store.getByteArray(it) ?: return@KVProperty default
-    return@KVProperty decoder.decode(it, array, V::class.java)
-}, {
-    val encoder = KvPlugins.findEncoder(first, second!!)
-        ?: throw UnsupportedOperationException("un support encoder key: $first clazz : ${V::class.java.name}")
-    val array = encoder.encode(first, second!!)
-    store.putByteArray(first, array)
-})
+inline fun <reified V> IKVOwner.kvCoder(default: V? = null, cache: Boolean? = null) =
+    KVProperty(cache, {
+        val decoder = KvPlugins.findDecoder(it, V::class.java)
+            ?: throw UnsupportedOperationException("un support decoder key: $it clazz : ${V::class.java.name}")
+        val array = store.getByteArray(it) ?: return@KVProperty default
+        return@KVProperty decoder.decode(it, array, V::class.java)
+    }, {
+        val encoder = KvPlugins.findEncoder(first, second!!)
+            ?: throw UnsupportedOperationException("un support encoder key: $first clazz : ${V::class.java.name}")
+        val array = encoder.encode(first, second!!)
+        store.putByteArray(first, array)
+    })
 
 
 @Suppress("UNCHECKED_CAST")

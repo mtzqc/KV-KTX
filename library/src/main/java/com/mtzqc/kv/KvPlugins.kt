@@ -9,6 +9,18 @@ object KvPlugins {
     private val encoderList = mutableListOf<IEncoder>()
     private val decoderList = mutableListOf<IDecoder>()
 
+    //value值是否缓存在内存中
+    private var globalMemoryCache: Boolean = false
+    //改变是否使用缓存
+    fun useCache(cache: Boolean){
+        globalMemoryCache = cache
+    }
+
+    internal fun useGlobalCache(cache: Boolean? = null):Boolean{
+       return cache==true || (globalMemoryCache && null==cache)
+    }
+
+
     fun addCoder(coder: ICoder) {
         if (coder is IEncoder && !encoderList.contains(coder)) {
             val newList = encoderList.toMutableList()
